@@ -9,4 +9,4 @@ cubrid loaddb -u dba -s $CUBRID/demo/demodb_schema -d $CUBRID/demo/demodb_object
 # `-e` instructs not to escape special characters.
 echo -e "[service]\nserver=demodb" >> $CUBRID/conf/cubrid.conf
 # Start CUBRID service.
-cubrid service start
+cubrid service start && tail -f $CUBRID_LOGS/**/* $CUBRID_LOGS/**/**/*

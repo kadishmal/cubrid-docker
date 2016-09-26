@@ -10,7 +10,7 @@ CUBRID (/ˈkjuːbrɪd/ "cube-rid") is an open source SQL-based relational databa
 
 The image has a default command:
  
-    cubrid service start && tail -f CUBRID_LOGS/**/*.log
+    cubrid service start && tail -f $CUBRID_LOGS/**/* $CUBRID_LOGS/**/**/*
 
 It will start CUBRID Service and tail all its logs. You may override this command
 as follows:

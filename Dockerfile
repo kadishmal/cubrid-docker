@@ -28,4 +28,4 @@ EXPOSE 33000 30000 8001 8002 1523
 # `tail -f /dev/null` trick is to keep the foreground process always ON.
 # Otherwise, the `cubrid` command quits as soon as it successfully
 # starts up all the necessary services.
-CMD cubrid service start && tail -f $CUBRID_LOGS/**/*.log
+CMD cubrid service start && tail -f $CUBRID_LOGS/**/* $CUBRID_LOGS/**/**/*

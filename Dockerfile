@@ -17,9 +17,15 @@ RUN rpm -ivh http://ftp.cubrid.org/CUBRID_Engine/$CUBRID_VERSION/Linux/cubrid-$C
 # Switch to `cubrid` user.
 USER $CUBRID_USER
 
+# Switch to `cubrid` home directory.
+WORKDIR $CUBRID
+
+# Add a script to create and start "demodb" database.
+ADD create-start-demodb.sh $CUBRID
+
 EXPOSE 33000 30000 8001 8002 1523
 
 # `tail -f /dev/null` trick is to keep the foreground process always ON.
 # Otherwise, the `cubrid` command quits as soon as it successfully
 # starts up all the necessary services.
-ENTRYPOINT cubrid service start && tail -f CUBRID_LOGS/**/*.log
+CMD cubrid service start && tail -f $CUBRID_LOGS/**/*.log

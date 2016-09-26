@@ -6,7 +6,27 @@ CUBRID (/ˈkjuːbrɪd/ "cube-rid") is an open source SQL-based relational databa
 
 ## How to use this image
 
-	docker run -p 33000:33000 --name cubrid lighthopper/cubrid:9.2.3.0005
+    docker run -p 33000:33000 --name cubrid lighthopper/cubrid:9.2.3.0005
+
+The image has a default command:
+ 
+    cubrid service start && tail -f CUBRID_LOGS/**/*.log
+
+It will start CUBRID Service and tail all its logs. You may override this command
+as follows:
+
+    docker run -p 33000:33000 --name cubrid lighthopper/cubrid:9.2.3.0005 cubrid service start 
+
+This, for instance, will start the Service but will not tail log files.
+
+Another alternative command is to create and start the `demodb` database distributed
+together with CUBRID.
+
+    docker run -p 33000:33000 --name cubrid lighthopper/cubrid:9.2.3.0005 ./create-start-demodb.sh
+    
+Or in case CUBRID is already running in a `cubrid` container:
+
+    docker exec cubrid ./create-start-demodb.sh
 
 ## Available versions
 

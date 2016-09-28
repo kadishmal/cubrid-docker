@@ -33,6 +33,7 @@ Or in case CUBRID is already running in a `cubrid` container:
 The following versions are available via tags.
 
 - 9.2.3.0005
+- 8.4.3.10001
 - 8.4.1.32003
 
 ## How to build this image:

@@ -3,7 +3,7 @@
 cd $CUBRID_DATABASES
 mkdir demodb
 cd demodb
-cubrid createdb --db-volume-size=64M --log-volume-size=64M demodb en_US.utf8
+cubrid createdb --db-volume-size=64M --log-volume-size=64M demodb
 cubrid loaddb -u dba -s $CUBRID/demo/demodb_schema -d $CUBRID/demo/demodb_objects demodb
 # Auto start "demodb" database when the server is started.
 # `-e` instructs not to escape special characters.

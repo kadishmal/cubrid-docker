@@ -6,9 +6,9 @@ ENV CUBRID_USER=cubrid
 ENV CUBRID=/opt/$CUBRID_USER
 ENV CUBRID_DATABASES=$CUBRID/databases
 ENV CUBRID_LOGS=$CUBRID/log
-ENV CUBRID_LANG=en_US
-ENV CUBRID_VERSION=9.0.0
-ENV CUBRID_PATCH_NUMBER=0478
+ENV CUBRID_CHARSET=en_US
+ENV CUBRID_VERSION=9.1.0
+ENV CUBRID_PATCH_NUMBER=0218
 ENV LD_LIBRARY_PATH=$CUBRID/lib
 ENV PATH=$CUBRID/bin:$PATH
 
@@ -24,6 +24,12 @@ WORKDIR $CUBRID
 ADD create-start-demodb.sh $CUBRID
 
 EXPOSE 33000 30000 8001 8002 1523
+
+# CUBRID 9.1.0 comes with Web Manager enabled which fails to
+# start up because it requires "root" user, but CUBRID requires
+# "cubrid" user. Conflicting. So disabled Web Manager in
+# CUBRID Manager configuration file.
+RUN sed -i 's/support_web_manager=YES/support_web_manager=NO/' conf/cm.conf
 
 # `tail -f /dev/null` trick is to keep the foreground process always ON.
 # Otherwise, the `cubrid` command quits as soon as it successfully
